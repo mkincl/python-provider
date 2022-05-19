@@ -5,8 +5,7 @@ MYDIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 export PATH := $(MYDIR)/bin:$(PATH)
 
 # Container target
-IMAGE_REGISTRY := ghcr.io/carlsmedstad
-IMAGE_PYTHON := $(IMAGE_REGISTRY)/mkincl-$(NAME):$(VERSION)
+IMAGE_PYTHON := ghcr.io/mkincl/$(NAME)-provider:$(VERSION)
 
 .PHONY: enter-container-$(NAME)
 enter-container-$(NAME):

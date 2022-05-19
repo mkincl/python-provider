@@ -1,6 +1,6 @@
 # mkincl-python
 
-[mkincl](https://github.com/carlsmedstad/mkincl) provider for Python
+[mkincl](https://github.com/mkincl/mkincl) provider for Python
 development.
 
 ## About
@@ -13,8 +13,8 @@ Provides targets for running:
 * [black](https://github.com/psf/black)
 * [pytest](https://github.com/pytest-dev/pytest)
 
-Provides the Docker image `ghcr.io/carlsmedstad/mkincl-python:v1`:
+Provides the Docker image `ghcr.io/mkincl/python-provider:v1`:
 
 ```sh
-podman pull ghcr.io/carlsmedstad/mkincl-python:v1
+podman pull ghcr.io/mkincl/python-provider:v1
 ```
