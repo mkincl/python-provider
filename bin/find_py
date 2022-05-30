@@ -1,5 +1,15 @@
-#!/bin/sh -u
+#!/bin/sh -eu
+# Print all Python files on stdout, both files with Python extensions and
+# Python shebangs.
+#
+# Limitation: Can't handle file names that xargs can't handle, for example file
+# names with spaces.
 
-find . -name .git -prune -o -name .env -prune -o -type f -print0 \
-  | xargs -0 grep -lE '^#!/usr/bin/env python'
-find . -name .git -prune -o -name .env -prune -o -type f -name '*.py' -print
+unignored_files=$(
+  find . -type f -not -path './.git/*' -print0 \
+    | xargs -0 git check-ignore --verbose --non-matching \
+    | sed -n '/^::\t/s/.*\t//p'
+)
+echo "$unignored_files" | xargs > /dev/null || ( echo "ERROR: Incompatible file names" 1>&2; exit 1 )
+echo "$unignored_files" | grep '\.py$'
+echo "$unignored_files" | xargs grep -lE '^#!/usr/bin/env python'
