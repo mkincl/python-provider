@@ -13,8 +13,49 @@ Provides targets for running:
 * [black](https://github.com/psf/black)
 * [pytest](https://github.com/pytest-dev/pytest)
 
-Provides the Docker image `ghcr.io/mkincl/python-provider:v1`:
+Provides the Docker image `ghcr.io/mkincl/python-provider:v1`. This image can
+be entered by running (after initialization):
 
 ```sh
-podman pull ghcr.io/mkincl/python-provider:v1
+make enter-container-python
+```
+
+## Usage
+
+To initialize the provider and enable all Make targets, run:
+
+```sh
+make init
+```
+
+After this has been done you can run all linters with:
+
+```sh
+make lint
+```
+
+You can apply fixes with:
+
+```sh
+make fix
+```
+
+You can run tests via:
+
+```sh
+make test
+```
+
+If your project is using multiple providers and you just want to run the
+tooling from this provider, append `-python` to the make target:
+
+```sh
+make <action>-python
+```
+
+To install the development dependencies this provider requires in your
+environment, run:
+
+```sh
+make install-python-dev-dependencies
 ```
